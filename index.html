@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Placing Race</title>
+    <link
+      rel="icon"
+      type="image/jpg"
+      href="https://cdn.glitch.com/92e677e8-5cc8-429f-8f4b-cbf85b4aabfa%2Fsearch.png?v=1620230482765"
+    />
+
+    <!-- Load Leaflet CSS -->
+    <link
+      href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+      rel="stylesheet"
+    />
+
+    <!-- Load Leaflet MarkerCluster File -->
+    <link href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.4.1/MarkerCluster.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.4.1/MarkerCluster.Default.css"
+    />
+
+    <!-- Load our styles -->
+    <link href="./style.css" rel="stylesheet" />
+
+    <!-- Load Leaflet and Carto libraries -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="https://libs.cartocdn.com/carto.js/v4.2.0/carto.min.js"></script>
+
+    <!-- import the Mustache library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.0/mustache.min.js"></script>
+
+    <!-- Load our JavaScript -->
+    <script defer src="./script.js"></script>
+  </head>
+
+  <body style="margin: 0px">
+    <div id="map"></div>
+    <div id="top-panel">
+      <h2 style="padding: 20px; margin: 0px">
+        Placing Racial Conciousness
+      </h2>
+    </div>
+
+    <!-- Popup -->
+    <section>
+      <script class="popup-template" type="x-tmpl-mustache">
+        <div>
+          <div class="name">{{participant}}</div>
+          <div class="place">{{place}}</div>
+          <div class="location">{{place_sub}}</div>
+          <div class="point">My {{point}} Point</div>
+          <div class="story">{{response}}</div>
+        </div>
+      </script>
+    </section>
+
+    <!-- LEFT CONTAINER -->
+    <section id="left-container">
+      <div class="left-pane title" style="padding-left: 10px;">
+        STORY ICONS
+      </div>
+      <div class="info">
+        hover for info
+      </div>
+      <div class="left-pane points tooltip">
+        <img
+          class="icon"
+          style="margin-right: 10px"
+          src="https://cdn.glitch.com/92e677e8-5cc8-429f-8f4b-cbf85b4aabfa%2Feyelines_1.svg"
+        />
+        FOCAL POINT
+        <span class="tooltiptext-left">
+          This is the place which created a prototype for what race would come
+          to mean. This place formed one’s early norms around racial and/or
+          ethnic identity.
+        </span>
+      </div>
+      <div class="left-pane points tooltip">
+        <img
+          class="icon"
+          style="margin-right: 10px"
+          src="https://cdn.glitch.com/92e677e8-5cc8-429f-8f4b-cbf85b4aabfa%2FAsset%202.svg"
+        />
+        PIVOT POINT
+        <span class="tooltiptext-left">
+          This is the place where one started to question the harmful norms
+          given, or solidified the helpful norms one had been given. This
+          vulnerable place is where knowledges, behaviors, or even a particular
+          relationship was challenged—where a Focal Point was brought into
+          question.
+        </span>
+      </div>
+      <div class="left-pane points tooltip">
+        <img
+          class="icon"
+          style="margin-right: 10px"
+          src="https://cdn.glitch.com/92e677e8-5cc8-429f-8f4b-cbf85b4aabfa%2FAsset%203.svg"
+        />
+        POINT OF RETURN
+        <span class="tooltiptext-left">
+          This is a place or set of places which remain touchstones in one’s
+          developing racial consciousness. Here one finds refreshment,
+          refinement, and/or a call to action towards racial reconciliation.
+          This place is a reminder that change is (continually) possible.
+        </span>
+      </div>
+      <div class="left-pane points tooltip">
+        <img
+          class="icon"
+          style="height: 30px; margin-right: 10px"
+          src="https://cdn.glitch.com/92e677e8-5cc8-429f-8f4b-cbf85b4aabfa%2Fhouse-root-1.svg"
+        />
+        HOME POINT
+        <span class="tooltiptext-left">
+          This is the storyteller's current homeplace.</span
+        >
+      </div>
+    </section>
+
+    <!-- RIGHT CONTAINER -->
+    <section id="right-container">
+      <div class="right-pane title" style="padding-left: 10px;">
+        IDENTITY REGIONS
+      </div>
+      <div class="info">
+        hover for info
+      </div>
+      <div class="right-pane region tooltip" style="background: var(--rust)">
+        RUST
+        <span class="tooltiptext-right">
+          The Rust Belt refers to the landscape of cities and towns which boomed
+          during America’s industrial manufacturing past, but have now shrunk
+          and suffered declines in populations, opportunities, and economies.
+        </span>
+      </div>
+
+      <div
+        class="right-pane region tooltip"
+        style="background: var(--mountain)"
+      >
+        MOUNTAIN
+        <span class="tooltiptext-right">
+          The Appalachian Mountains are America’s beautiful eastern range.
+          However, while this topography has created unique cultures, it has
+          also contributed to social and economic isolation due to low
+          population density and resource distribution.
+        </span>
+      </div>
+      <div class="right-pane region tooltip" style="background: var(--river)">
+        RIVER
+        <span class="tooltiptext-right">
+          The Mississippi River Basin Watershed is massive - including all of
+          the tributaries springing from the rockies to the great lakes. This
+          breadth also means great sensitivity; every human development within
+          this watershed distributes waste into these far-reaching streams.
+        </span>
+      </div>
+      <div class="right-pane region tooltip" style="background: var(--land)">
+        NATIVE LAND
+        <span class="tooltiptext-right">
+          Native culture, nationhood, and sovereignty extends far beyond the
+          reservations listed here, but the limited land of these collected
+          communities speaks to the isolation and limitation that Native folks
+          face in everyday resource distribution and interruption.
+        </span>
+      </div>
+      <div
+        class="right-pane region tooltip"
+        style="border-bottom: dotted var(--oil) 4px"
+      >
+        OIL
+        <span class="tooltiptext-right">
+          Massive pipelines criss-cross the continent, and here are merely the
+          crude oil lines. Crude oil harvesting breaks the land and communities
+          it originates in and endangers the land and waters it crosses. But,
+          others will boast of its capital gains.
+        </span>
+      </div>
+    </section>
+
+    <!-- BOTTOM PANEL -->
+    <section id="bottom-panel">
+      <h1>
+        A lot is happening on this map! <br />
+        Read one story at a time here:
+      </h1>
+      <div style="padding: 20px" class="layer-selector">
+        <div class="box">
+          <select class="story-picker">
+            <option value="all">All Stories. </option>
+            <option value="Allison">Allison's Story.</option>
+            <option value="b">B's Story.</option>
+            <option value="Kara">Kara's Story.</option>
+            <option value="Karrie">Karrie's Story.</option>
+            <option value="Jason">Jason's Story.</option>
+            <option value="Kyle">Kyle's Story.</option>
+            <option value="Tim">Tim's Story.</option>
+            <option value="Rebekah">Rebekah's Story.</option>
+          </select>
+        </div>
+      </div>
+      <button id="page-block-me" style="padding: 5px; margin: 10px;">
+        <h1>My Story</h1>
+      </button>
+      <button id="page-block" style="padding: 5px; margin: 10px;">
+        <h1>About this Map</h1>
+      </button>
+      <button style="padding: 5px; margin: 10px;">
+        <h1><a href="https://docs.google.com/document/d/1DVO5Xs8T0tqbBH61rF6OGcktO2-qC-rVpogO_stY9n0/edit?usp=sharing" target="_blank" style="color: black">Sources +</a></h1>
+      </button>
+    </section>
+
+    <!-- ABOUT ME-->
+    <div id="about-me" class="about-page" style="display: none">
+      <div class="about-content" style="width: 800px">
+        <div class="spacer">
+        <span class="close-me" style="font-family: 'permanent_marker', sans-serif;"
+        >x</span>
+        </div>
+        <img src="https://cdn.glitch.com/92e677e8-5cc8-429f-8f4b-cbf85b4aabfa%2FMy%20Map%20Draft.svg?v=1620352402522">
+    </div>
+    </div>
+    
+    
+    <!-- ABOUT PAGE -->
+    <div id="about" class="about-page" style="display: none">
+      <div class="about-content">
+        <div class="spacer">
+        <span class="close" style="font-family: 'permanent_marker', sans-serif;"
+        >x</span>
+        </div>
+        <h3>Dear Reader,</h3>
+
+        <p2
+          >Thank you for visiting my Placing Racial Consciousness map! There’s a
+          lot going on in here, so let me introduce you to a few things you can
+          find here…</p2
+        >
+
+        <h1>Where do we learn about race?</h1>
+
+        <p>
+          As a white person, I was curious to ask white friends and contacts
+          about their unfolding racial consciousness. From personal experience,
+          I recognize that white folks are often left with the utterly
+          incomplete and dangerously unjust understanding that “race is for
+          other people,” when really it was a myth of “whiteness” itself which
+          propagated the social construction of race as a way to identify
+          peoples that fascists believed to be inferior. Such behavior, such
+          attitudes were at the core of creating entire markets, entire
+          infrastructures to condemn black, African, Latin, Asian, and Middle
+          Eastern peoples to a racist political economy of less-than, poised to
+          uplift and empower white voices, white capital, white space.
+        </p>
+
+        <p>
+          Race, as any market force, has in turn morphed our physical and social
+          landscapes. Race has become embedded in place. This map illustrates
+          how a small handful of participants identified with their racial
+          consciousness in place, as a result of people, powers, and phenomena
+          which American racial apartheid perpetuates there. But, as you will see,
+          this is not merely a map of the United States of America. An
+          interesting thing we see here is the mobility of these participants
+          and what that movement meant for them. Some participants learned about
+          race from their upbringings, some found revolutionary thoughts once
+          they left home.
+        </p>
+
+        <h1>Story, Point by Point</h1>
+
+        <p>
+          These perspectives are mapped according to 3 unique points, what I
+          have called the Focal Point - where one first encountered difference
+          and was taught how to approach it, Pivot Point - where this approach
+          towards difference, race, and behavior was challenged and perhaps
+          changed, and a Point of Return - a homeplace of consciousness where
+          one might return to learn more, turns to for solace, or continues to
+          revere for wisdom and guidance. Lastly, each participant offered a
+          place they physically or socially call Home right now.
+        </p>
+
+        <p>
+          Each entry was pinned on the map by the participant, but some
+          locations have been abstracted for the sake of some anonymity and
+          safety. The participants were introduced to these ideas as a way of
+          processing their story through a mapped interview form, and that data
+          was cleaned and prepared to be uploaded to this site.
+        </p>
+
+        <p>
+          You will find, as you click through each person’s story that they
+          answered prompts about Focal, Pivot, and Return points with openness
+          and reflection. That is how I invite you to read their stories: with
+          openness and reflection. Some of these stories may feel awkward, some
+          familiar, some might not sit well with you. This is the nature of life
+          in process, but this is also the nature of the incongruent language we
+          have been given to talk about <em>difference</em> in America.
+        </p>
+
+        <h1>Towards <em>Decentering</em> Whiteness</h1>
+
+        <p>
+          A helpful reflection and guide to move past this categorization of
+          race into a more justly collaborative, multiracial society was written
+          by Jeff Hitchcock and Charley Flint called “Decentering Whiteness.”
+        </p>
+
+        <p>
+          In their work, they identify how white folks often unconsciously hold
+          the center (and thus force others to the margins), by presuming
+          whiteness as “the standard,” or their general behaviors as “morally
+          correct” and thus not needing challenge, or “comfortable” and
+          “secure.” This sensory, felt normalcy by white folks leaves them stead
+          in their complicity of larger marginalizing projects, such as Jim Crow
+          tactics, spatial and social segregation, and unequal access to common
+          resources such as food, water, and shelter.
+        </p>
+
+        <p>
+          It is against this dangerous ignorance, complicity, and violence that
+          I offer the personal reflections on this map. You may ask - wait,
+          aren’t you centering whiteness by talking only to white folks about
+          race? Well, you’re not wrong. This project seeks to be informed by its
+          limitations. At first, I had goals to collect a broad assortment of
+          participants, but then, as I searched my Self, I realized that the
+          questions I was reflecting on personally might differ than those I
+          would need to pose to respect the lives and stories of others.
+          Additionally, as I “tried out my process,” I wanted to be sensitive to
+          BIPOC participants who have had plenty of processes “tried out” on
+          them before. So, I decided to do my test run on white people this time
+          around.
+        </p>
+
+        <p2>Could I use whiteness as a lens to highlight difference?</p2>
+        <p2>To frame stories of learning and change?</p2>
+        <p2>That success is up to you, as a reader of this map, to decide.</p2>
+
+        <p2>Does this map take you anywhere helpful?</p2>
+
+        <p>
+          I’d invite you to join me in this process of moving towards what
+          Hitchcock and Flint call a multiracial society, where we give from our
+          centers, not take and hoard from them, co-creating commonly held,
+          culturally literate futures.
+        </p>
+
+        <h1>Map Characteristics: How to Read these Stories</h1>
+
+        <h1><em>My Story + Pick a Story</em></h1>
+        <p>
+          My story is a great place to start! Here, I dig into some of the
+          places I saw race and “place” informed in my life. I use the
+          Focal/Pivot/Return points in a more extensive sense across a wider
+          range of spaces and times than what you’ll find on the map.
+        </p>
+
+        <p>
+          Then, check out each participant’s story by picking it from the
+          dropdown menu. The map will be simplified to just the storyteller’s
+          points, and one or two regions that relate to this. You may click
+          through the different Points of each story, and then you can return to
+          see the complexity of them all together.
+        </p>
+
+        <h1><em>Identity Regions</em></h1>
+        <p>
+          As we are inquiring about how race relates to place, I was also
+          curious about how these identified places relate to wider spaces and
+          systems. If race has been a tool for dividing space, such as redlining
+          (See the Mapping Inequality map <a href="https://dsl.richmond.edu/panorama/redlining/" target="_blank">here</a>.
+          ) or senses of safety and
+          belonging (See the Greenbook Map <a href="https://publicdomain.nypl.org/greenbook-map/map.html" target="_blank">here</a>.
+          ), how do our
+          individual identities and stories interact with larger systems -
+          natural and human-made?
+        </p>
+
+        <p>
+          In order to set up these questions, I have included five layers of a
+          key systems that were mentioned by our storytellers: the Rust Belt,
+          the Appalachian Mountains, the Mississippi River Basin Watershed
+          (huge, isn’t it!?), Native Land as categorized by US
+          government-recognized reservations (understandably limited), and Crude
+          Oil pipelines. These “systems” are decidedly heterogeneous in sources
+          and form - from river basins formed by the earth, to piping and
+          industrial zones built to exploit the earth. But, by including these
+          regions, I invite the readers to examine how these might interact with
+          the exploitative nature of race, difference, and segregation tactics -
+          massive systems which construe our economies and ecologies to benefit
+          the few.
+        </p>
+
+        <p>
+          So many more regions could be included here - agriculture zones,
+          population centers and demographics, pollution and production spaces,
+          etc - but these are a start. What other systems, regions, and forces
+          are you familiar with in the places we’ve mapped together? How might
+          they inform locals’ identities, livelihoods, futures?
+        </p>
+
+        <h1>Submit Your Commentary</h1>
+
+        <p>
+          The survey section of this map is closed for the time being, but I
+          would love to hear your comments and how you have encountered this map
+          - be they curious, caring, or critical. This project is, as I am, a
+          work in progress. Please contribute!
+        </p>
+
+        <p>You may email your thoughts to geocommunetrics@gmail.com</p>
+
+        <p2
+          >Thank you for poking around our collective consciousness with
+          me...</p2
+        >
+        <p2>Onward,</p2>
+        <h3>Jason</h3>
+      </div>
+    </div>
+    
+    <!-- SOURCES PAGE -->
+  </body>
+</html>
