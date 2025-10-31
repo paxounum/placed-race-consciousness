@@ -1,0 +1,374 @@
+/* CSS files add styling rules to your content */
+
+:root {
+  --owhite: #f0f4f4;
+  --gold: #bb8b41;
+  --green: #a2a95a;
+  --dgreen: #688773;
+  --blue: #4a82ad;
+  --red: #c27c69;
+  --purple: #8071b2;
+  --gray: #535e5e;
+  --oil: #886347;
+  --land: #bab56d;
+  --rust: #ba916d;
+  --river: #6d9eba;
+  --mountain: #b0a7c9;
+}
+
+@font-face {
+  font-family: "permanent_marker";
+  src: url("https://cdn.glitch.com/92e677e8-5cc8-429f-8f4b-cbf85b4aabfa%2Fpermanentmarker-regular-webfont.woff2?v=1620242925380")
+      format("woff2"),
+    url("https://cdn.glitch.com/92e677e8-5cc8-429f-8f4b-cbf85b4aabfa%2Fpermanentmarker-regular-webfont.woff?v=1620242925380")
+      format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: helvetica, arial, sans-serif;
+  margin: 2em;
+}
+
+h1 {
+  font-family: montserrat, arial, sans-serif;
+  font-size: 15px;
+  text-transform: uppercase;
+  color: black;
+}
+
+/*Title*/
+h2 {
+  font-family: "permanent_marker", serif;
+  color: black;
+  font-size: 30px;
+}
+
+h3 {
+  font-family: "permanent_marker", serif;
+  color: black;
+  font-size: 20px;
+}
+
+p {
+  font-family: montserrat, arial, sans-serif;
+  font-size: 14px;
+  padding: 10px;
+}
+
+p2 {
+  font-family: montserrat, arial, sans-serif;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+a {
+  color: var(--dgreen);
+  text-decoration: none;
+}
+
+a:hover {
+  color: black;
+  text-decoration: underline dotted var(--dgreen);
+} 
+
+/* Popup Styles*/
+
+.name {
+  font-family: "permanent_marker", serif;
+  color: black;
+  font-size: 25px;
+  padding: 5px;
+  border-bottom: dashed var(--dgreen) 2px;
+
+}
+
+.place {
+  font-family: montserrat, arial, sans-serif;
+  font-size: 15px;
+  font-weight: bold;
+  color: black;
+  text-transform: uppercase;
+ }
+
+.location {
+  font-family: montserrat, arial, sans-serif;
+  font-size: 12px;
+  font-style: italic;
+  color: black;
+  padding: 5px;
+  padding-top: 0;
+  margin-bottom: 5px;
+}
+
+.point {
+  font-family: montserrat, arial, sans-serif;
+  font-size: 12px;
+  font-weight: bold;
+  color: black;
+  text-transform: uppercase;
+}
+
+.story {
+  font-family: montserrat, arial, sans-serif;
+  font-size: 12px;
+  max-height: 120px;
+  background: white;
+  overflow-y: scroll;
+}
+
+.icon {
+  width: 35px; 
+  margin: 2px; 
+  padding: 2px;
+}
+
+/* General Styles */
+
+#map {
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  bottom: 0px;
+}
+
+#top-panel {
+  width: 100%;
+  height: 10vh;
+  background: none;
+  display: flex;
+  position: fixed;
+  top: 0;
+  justify-content: center;
+  z-index: 700;
+}
+
+#bottom-panel {
+  background: var(--dgreen);
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  left: 0px;
+  justify-content: center;
+  z-index: 3000;
+  padding-left: 10px;
+}
+
+/* Left Side Title Containers */
+#left-container {
+  background: none;
+  width: 15%;
+  max-width: 150px;
+  height: 100%;
+  padding: 0px;
+  display: flex;
+  position: fixed;
+  flex-flow: column wrap;
+  left: 0;
+  top: 0;
+  justify-content: center;
+  z-index: 701;
+}
+
+.left-pane.title {
+  font-family: "permanent_marker", serif;
+  color: black;
+  background: rgba(83, 94, 94, 0.2);
+  font-size: 20px;
+  padding: 10px;
+  width: 100%;
+  display: flex;
+  align-self: flex-end;
+  flex: 1 auto 0;
+  z-index: 4002;
+}
+
+.left-pane.points {
+  background: var(--owhite);
+  left: 0;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 0px;
+  display: flex;
+  flex: 1 auto 0;
+  z-index: 4002;
+  align-self: flex-end;
+  font-family: montserrat, arial, sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  color: black;
+  text-transform: uppercase;
+}
+
+.info {
+  font-family: monsterrat, arial, sans-serif;
+  font-size: 8px;
+  background: var(--gray);
+  color: white;
+  padding: 5px;
+  text-transform: uppercase;
+}
+
+
+/* Right Side Region Containers */
+#right-container {
+ background: none;
+  width: 15%;
+  height: 100%;
+  padding: 15px;
+  display: flex;
+  position: fixed;
+  flex-flow: column wrap;
+  right: 0;
+  top: 0;
+  justify-content: center;
+  z-index: 701;
+}
+
+.right-pane.title {
+  font-family: "permanent_marker", serif;
+  color: black;
+  background: rgba(83, 94, 94, 0.2);
+  font-size: 20px;
+  padding: 5px;
+  right: 0;
+  width: 100%;
+  margin-bottom: 0px;
+  display: flex;
+  flex: 1 auto 0;
+  z-index: 4002;
+}
+
+.right-pane.region {
+  background: var(--owhite);
+  left: 0;
+  width: 100%;
+  max-width: 200px;
+  padding: 10px;
+  margin-bottom: 0px;
+  display: flex;
+  flex: 1 auto 0;
+  z-index: 4002;
+  align-self: flex-end;
+  font-family: montserrat, arial, sans-serif;
+  font-size: 15px;
+  font-weight: bold;
+  color: black;
+  text-transform: uppercase;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* Tooltip container */
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext-left {
+  visibility: hidden;
+  width: 200px;
+  background-color: var(--gray);
+  color: #fff;
+  font-family: montserrat, arial, sans-serif;
+  font-size: 14px;
+  text-transform: none;
+  font-weight: normal;
+  text-align: left;
+  padding: 15px;
+  border-radius: 6px;
+  top: -5px;
+  left: 105%;
+  position: absolute;
+}
+
+.tooltip:hover .tooltiptext-left {
+  visibility: visible;
+}
+
+.tooltip .tooltiptext-right {
+  visibility: hidden;
+  width: 200px;
+  background-color: var(--gray);
+  color: #fff;
+  font-family: montserrat, arial, sans-serif;
+  font-size: 14px;
+  text-transform: none;
+  font-weight: normal;
+  text-align: right;
+  padding: 15px;
+  border-radius: 6px;
+  top: -5px;
+  right: 105%;
+  position: absolute;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext-right {
+  visibility: visible;
+}
+
+/*About Page*/
+
+/* The Modal (background) */
+.about-page {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 100000000000000000000; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(83,94,94,0.6);
+  overflow: auto;
+  opacity: 1;
+}
+
+/* Modal Content/Box */
+.about-content {
+  background-color: var(--owhite);
+  margin: 5% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 3px dotted var(--dgreen);
+  overflow: auto;
+  max-height: 65%;
+  width: 600px; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.spacer {
+  background: none;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.close-me {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close-me:hover,
+.close-me:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
